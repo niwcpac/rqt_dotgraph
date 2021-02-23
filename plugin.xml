@@ -1,0 +1,18 @@
+<library path="src">
+  <class name="Dot Graph Viewer" type="rqt_dotgraph.rqt_dotgraph.RqtDotGraphViewer" base_class_type="rqt_gui_py::Plugin">
+    <description>rqt GUI plugin to visualize dot graphs.</description>
+    <qtgui>
+      <group>
+        <label>Visualization</label>
+      </group>
+      <!-- subgroup, i'm not sure it's needed yet.
+      <group>
+        <label>ROS 2 Planning System</label>
+      </group>
+      -->
+      <label>Dot Graph Viewer</label>
+      <icon type="theme">applications-science</icon>
+      <statustip>Dot Graph Viewer</statustip>
+    </qtgui>
+  </class>
+</library>
