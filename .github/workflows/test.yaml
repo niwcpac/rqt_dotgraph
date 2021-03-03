@@ -25,7 +25,7 @@ jobs:
           python3 -m pip install --upgrade statick-md
           python3 -m pip install --upgrade black
           # flake8-quotes conflicts with black, but is installed by the setup-ros action.
-          python3 -m pip uninstall flake8-quotes
+          python3 -m pip uninstall -y flake8-quotes
 
       # Have to install newer version from non-apt source due to SSL library compatibility issues.
       - name: Install tools (Linux)
