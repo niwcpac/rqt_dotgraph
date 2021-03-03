@@ -40,6 +40,7 @@ from python_qt_binding.QtWidgets import QFileDialog, QWidget
 from rqt_dotgraph.xdot_qt import DotWidget
 
 from rqt_gui.main import Main
+
 from rqt_gui_py.plugin import Plugin
 
 from std_msgs.msg import String
@@ -49,6 +50,7 @@ class RqtDotGraphViewer(Plugin):
     """rqt GUI plugin to visualize dot graphs."""
 
     def __init__(self, context):
+        """Initialize the plugin."""
         super(RqtDotGraphViewer, self).__init__(context)
         self._context = context
         self.subscription = None
