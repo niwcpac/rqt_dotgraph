@@ -21,7 +21,7 @@ import pytest
 @pytest.mark.linter
 def test_flake8():
     """Run flake8 on the package."""
-    return_code, errors = main_with_errors(argv=[])
+    return_code, errors = main_with_errors(argv=["--exclude", "xdot_qt.py"])
     assert return_code == 0, "Found %d code style errors / warnings:\n" % len(
         errors
     ) + "\n".join(errors)

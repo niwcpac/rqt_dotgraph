@@ -27,22 +27,22 @@ import sys
 
 from ament_index_python import get_resource
 
-from std_msgs.msg import String
-
 # pylint doesn't support how python_qt_bindings modules are added:
 # https://github.com/PyCQA/pylint/issues/3398
 # pylint: disable=no-name-in-module,import-error
 from python_qt_binding import loadUi
 from python_qt_binding.QtGui import QImageWriter
-from python_qt_binding.QtWidgets import QFileDialog, QWidget
 from python_qt_binding.QtSvg import QSvgGenerator
+from python_qt_binding.QtWidgets import QFileDialog, QWidget
 
 # pylint: enable=no-name-in-module,import-error
+
+from rqt_dotgraph.xdot_qt import DotWidget
 
 from rqt_gui.main import Main
 from rqt_gui_py.plugin import Plugin
 
-from rqt_dotgraph.xdot_qt import DotWidget
+from std_msgs.msg import String
 
 
 class RqtDotGraphViewer(Plugin):
