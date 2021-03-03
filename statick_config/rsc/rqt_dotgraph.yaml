@@ -1,0 +1,7 @@
+default: objective_with_format
+
+packages:
+
+# You can do individual package level overrides like:
+# packages:
+#   my_package: objective

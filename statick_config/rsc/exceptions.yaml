@@ -1,0 +1,6 @@
+global:
+  exceptions:
+    file:
+      # Forked third-party code.
+      - tools: all
+        globs: ["*xdot_qt.py"]
