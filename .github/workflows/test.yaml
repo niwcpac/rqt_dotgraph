@@ -59,10 +59,13 @@ jobs:
           # yml: ./codecov.yml
           # fail_ci_if_error: false
 
+      - name: Setup Statick config
+        uses: actions/checkout@v2
+
       - name: Statick
         run: |
           cd ros_ws
           source /opt/ros/foxy/setup.sh
           source install/setup.bash
           mkdir statick-output
-          statick ./src --output-directory statick-output --user-paths ./src/rqt_dotgraph/statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml
+          statick ./src --output-directory statick-output --user-paths ../rqt_dotgraph/statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml
