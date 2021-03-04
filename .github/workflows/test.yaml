@@ -61,7 +61,7 @@ jobs:
 
       - name: Find repository
         run: |
-          echo "REPO_DIR=$(find ./ros_ws/src -maxdepth 3 -type d -name rqt_dotgraph)" >> $GITHUB_ENV
+          echo "REPO_PATH=$(find ./ros_ws -maxdepth 3 -type d -name rqt_dotgraph -exec readlink -f {} \;)" >> $GITHUB_ENV
 
       - name: Statick
         run: |
@@ -69,4 +69,4 @@ jobs:
           source /opt/ros/foxy/setup.sh
           source install/setup.bash
           mkdir statick-output
-          statick ./src --output-directory statick-output --user-paths $REPO_DIR/statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml
+          statick ./src --output-directory statick-output --user-paths $REPO_PATH/statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml
