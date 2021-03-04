@@ -37,13 +37,13 @@ from python_qt_binding.QtWidgets import QFileDialog, QWidget
 
 # pylint: enable=no-name-in-module,import-error
 
-from rqt_dotgraph.xdot_qt import DotWidget
-
 from rqt_gui.main import Main
 
 from rqt_gui_py.plugin import Plugin
 
 from std_msgs.msg import String
+
+from rqt_dotgraph.xdot_qt import DotWidget
 
 
 class RqtDotGraphViewer(Plugin):
@@ -51,7 +51,7 @@ class RqtDotGraphViewer(Plugin):
 
     def __init__(self, context):
         """Initialize the plugin."""
-        super(RqtDotGraphViewer, self).__init__(context)
+        super().__init__(context)
         self._context = context
         self.subscription = None
         self.graph = None

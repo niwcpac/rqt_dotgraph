@@ -8,3 +8,4 @@ extend-ignore =
   W503
 max-line-length = 88
 exclude = rqt_dotgraph/xdot_qt.py
+application_import_names = rqt_dotgraph
