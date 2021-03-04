@@ -8,8 +8,9 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-20.04]
-      fail-fast: false
     steps:
+      - uses: actions/checkout@v2
+
       - name: Setup ROS 2
         uses: ros-tooling/setup-ros@0.1.1
         with:
@@ -65,10 +66,12 @@ jobs:
 
       - name: Statick
         run: |
+          ls
           cd ros_ws
           source /opt/ros/foxy/setup.sh
           source install/setup.bash
           mkdir statick-output
+          ls src
           ls $REPO_PATH
           ls $REPO_PATH/statick_config
           statick ./src --check --output-directory statick-output --user-paths $REPO_PATH/statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml
