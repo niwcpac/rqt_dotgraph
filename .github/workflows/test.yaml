@@ -69,4 +69,6 @@ jobs:
           source /opt/ros/foxy/setup.sh
           source install/setup.bash
           mkdir statick-output
-          statick ./src --output-directory statick-output --user-paths $REPO_PATH/statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml
+          ls $REPO_PATH
+          ls $REPO_PATH/statick_config
+          statick ./src --check --output-directory statick-output --user-paths $REPO_PATH/statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml
