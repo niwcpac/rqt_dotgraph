@@ -10,6 +10,8 @@ jobs:
         os: [ubuntu-20.04]
       fail-fast: false
     steps:
+      - uses: actions/checkout@v2
+
       - name: Setup ROS 2
         uses: ros-tooling/setup-ros@0.1.1
         with:
@@ -58,9 +60,6 @@ jobs:
           name: codecov-umbrella
           # yml: ./codecov.yml
           # fail_ci_if_error: false
-
-      - name: Setup Statick config
-        uses: actions/checkout@v2
 
       - name: Statick
         run: |
