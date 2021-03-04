@@ -17,13 +17,15 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python3 -m pip install --upgrade pip
-          python3 -m pip install --upgrade setuptools
-          python3 -m pip install --upgrade wheel
-          python3 -m pip install --upgrade coverage
-          python3 -m pip install --upgrade statick
-          python3 -m pip install --upgrade statick-md
-          python3 -m pip install --upgrade black
+          # This is not the preferred way to install python tools but seems to be required here.
+          # "python3 -m pip" would be preferred.
+          sudo pip3 install --upgrade pip
+          sudo pip3 install --upgrade setuptools
+          sudo pip3 install --upgrade wheel
+          sudo pip3 install --upgrade coverage
+          sudo pip3 install --upgrade statick
+          sudo pip3 install --upgrade statick-md
+          sudo pip3 install --upgrade black
 
       # Have to install newer version from non-apt source due to SSL library compatibility issues.
       - name: Install tools (Linux)
