@@ -9,8 +9,6 @@ jobs:
       matrix:
         os: [ubuntu-20.04]
     steps:
-      - uses: actions/checkout@v2
-
       - name: Setup ROS 2
         uses: ros-tooling/setup-ros@0.1.1
         with:
@@ -63,6 +61,9 @@ jobs:
       - name: Find repository
         run: |
           echo "REPO_PATH='$(find ./ros_ws/src -maxdepth 2 -type d -name rqt_dotgraph -exec readlink -f {} \;)'" >> $GITHUB_ENV
+
+      - name: Setup copy of repo
+        uses: actions/checkout@v2
 
       - name: Statick
         run: |
