@@ -63,6 +63,6 @@ jobs:
 
       - name: Statick
         run: |
-          ls
+          source /opt/ros/foxy/setup.sh
           mkdir statick-output
           statick . --check --output-directory statick-output --user-paths ./statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml
