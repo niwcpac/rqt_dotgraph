@@ -58,21 +58,11 @@ jobs:
           # yml: ./codecov.yml
           # fail_ci_if_error: false
 
-      - name: Find repository
-        run: |
-          echo "REPO_PATH='$(find ./ros_ws/src -maxdepth 2 -type d -name rqt_dotgraph -exec readlink -f {} \;)'" >> $GITHUB_ENV
-
       - name: Setup copy of repo
         uses: actions/checkout@v2
 
       - name: Statick
         run: |
           ls
-          cd ros_ws
-          source /opt/ros/foxy/setup.sh
-          source install/setup.bash
           mkdir statick-output
-          ls src
-          ls $REPO_PATH
-          ls $REPO_PATH/statick_config
-          statick ./src --check --output-directory statick-output --user-paths $REPO_PATH/statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml
+          statick . --check --output-directory statick-output --user-paths ./statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml
