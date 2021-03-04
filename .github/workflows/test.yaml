@@ -10,8 +10,6 @@ jobs:
         os: [ubuntu-20.04]
       fail-fast: false
     steps:
-      - uses: actions/checkout@v2
-
       - name: Setup ROS 2
         uses: ros-tooling/setup-ros@0.1.1
         with:
@@ -64,7 +62,8 @@ jobs:
       - name: Statick
         run: |
           cd ros_ws
+          repo_dir = `find ./src -maxdepth 3 -type d -name rqt_dotgraph`
           source /opt/ros/foxy/setup.sh
           source install/setup.bash
           mkdir statick-output
-          statick ./src --output-directory statick-output --user-paths ../rqt_dotgraph/statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml
+          statick ./src --output-directory statick-output --user-paths $repo_dir/statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml
