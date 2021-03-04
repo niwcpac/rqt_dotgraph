@@ -50,8 +50,8 @@ jobs:
       - name: Codecov
         uses: codecov/codecov-action@v1.1.0
         with:
-          # file: ros_ws/lcov/total_coverage.info
-          file: ${{ steps.build-and-test.outputs.ros-workspace-directory-name }}/lcov/total_coverage.info
+          file: ros_ws/lcov/total_coverage.info
+          # file: ${{ steps.build-and-test.outputs.ros-workspace-directory-name }}/lcov/total_coverage.info
           flags: unittests
           name: codecov-umbrella
           # yml: ./codecov.yml
