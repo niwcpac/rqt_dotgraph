@@ -59,11 +59,14 @@ jobs:
           # yml: ./codecov.yml
           # fail_ci_if_error: false
 
+      - name: Find repository
+        run: |
+          echo "REPO_DIR=$(find ./src -maxdepth 3 -type d -name rqt_dotgraph)" >> $GITHUB_ENV
+
       - name: Statick
         run: |
           cd ros_ws
-          repo_dir = `find ./src -maxdepth 3 -type d -name rqt_dotgraph`
           source /opt/ros/foxy/setup.sh
           source install/setup.bash
           mkdir statick-output
-          statick ./src --output-directory statick-output --user-paths $repo_dir/statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml
+          statick ./src --output-directory statick-output --user-paths $REPO_DIR/statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml
