@@ -14,7 +14,7 @@ jobs:
         with:
           required-ros-distributions: foxy
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
           # This is not the preferred way to install python tools but seems to be required here.
           # "python3 -m pip" would be preferred.
@@ -25,10 +25,20 @@ jobs:
           sudo pip3 install --upgrade statick
           sudo pip3 install --upgrade statick-md
           sudo pip3 install --upgrade black
+          sudo pip3 install --upgrade docformatter
+          sudo pip3 install --upgrade lizard
+          sudo pip3 install --upgrade pycodestyle
+          sudo pip3 install --upgrade pydocstyle
+          sudo pip3 install --upgrade pyflakes
+          sudo pip3 install --upgrade pylint
+          sudo pip3 install --upgrade yamllint
 
       # Have to install newer version from non-apt source due to SSL library compatibility issues.
-      - name: Install tools (Linux)
+      - name: Install Apt dependencies (Linux)
         run: |
+          sudo apt install cccc
+          sudo apt install libxml2
+          sudo apt install libxml2-utils
           sudo apt install curl
           curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
           sudo bash nodesource_setup.sh
