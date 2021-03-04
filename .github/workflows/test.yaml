@@ -66,4 +66,4 @@ jobs:
         run: |
           cd ${{ steps.build-and-test.outputs.ros-workspace-directory-name }}
           mkdir statick-output
-          statick ./src/rqt_dotgraph --output-directory statick-output --user-paths ./src/rqt_dotgraph/statick_config --profile rqt_dotgraph.yaml
+          statick ./src/rqt_dotgraph --output-directory /tmp/statick-output --user-paths ./src/rqt_dotgraph/statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml

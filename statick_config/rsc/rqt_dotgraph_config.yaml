@@ -1,0 +1,8 @@
+levels:
+  rqt_dotgraph:
+    inherits_from: "objective_with_format"
+    tool:
+      black:
+        flags: ""
+      markdownlint:
+        flags: ""
