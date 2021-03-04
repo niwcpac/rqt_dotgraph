@@ -57,11 +57,6 @@ jobs:
           # yml: ./codecov.yml
           # fail_ci_if_error: false
 
-      - name: Statick Documentation
-        run: |
-          cd ${{ steps.build-and-test.outputs.ros-workspace-directory-name }}
-          statick ./src --ws --check --profile documentation.yaml
-
       - name: Statick
         run: |
           cd ${{ steps.build-and-test.outputs.ros-workspace-directory-name }}
