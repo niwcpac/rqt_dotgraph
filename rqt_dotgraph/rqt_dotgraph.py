@@ -6,10 +6,10 @@ their official duties. Pursuant to title 17 Section 105 of the United States Cod
 software is not subject to copyright protection and is in the public domain. The
 Government assumes no responsibility whatsoever for its use by other parties, and the
 software is provided "AS IS" without warranty or guarantee of any kind, express or
-implied, including, but not limited to, the warranties of merchantability, fitness for
-a particular purpose, and noninfringement. In no event shall the Government be liable
-for any claim, damages or other liability, whether in an action of contract, tort or
-other dealings in the software. The software is not designed for use in (i) the design,
+implied, including, but not limited to, the warranties of merchantability, fitness for a
+particular purpose, and noninfringement. In no event shall the Government be liable for
+any claim, damages or other liability, whether in an action of contract, tort or other
+dealings in the software. The software is not designed for use in (i) the design,
 construction, operation or maintenance of any nuclear facility; (ii) navigating or
 operating aircraft or any manned vehicle; or (iii) any life-saving, life-support or
 life-critical medical equipment. The Government has no obligation hereunder to provide

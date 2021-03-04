@@ -10,7 +10,7 @@ levels:
       cccc:
         flags: ""
       docformatter:
-        flags: "--wrap-summaries 88 --wrap-descriptions 88"
+        flags: "--wrap-summaries 88 --wrap-descriptions 88 --pre-summary-newline"
       lizard:
         flags: ""
       markdownlint:
