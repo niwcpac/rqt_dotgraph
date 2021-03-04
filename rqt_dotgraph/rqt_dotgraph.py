@@ -56,7 +56,6 @@ class RqtDotGraphViewer(Plugin):
         self.subscription = None
         self.graph = None
         self.filename = None
-        self.topic = "dot_graph"
 
         # only declare the parameter if running standalone or it's the first instance
         if self._context.serial_number() <= 1:
@@ -94,19 +93,19 @@ class RqtDotGraphViewer(Plugin):
         if self._context.serial_number() < 1:
             self._widget.window().setWindowTitle(self.title)
 
-        self.setup_subscription()
+        self.setup_subscription("dot_graph")
 
     def update_subscriber(self):
         """Update ROS 2 subscription with topic from text box."""
         if self.subscription is not None:
             self.subscription.destroy()
-        self.topic = self._widget.topicText.text()
-        self.setup_subscription()
+        topic = self._widget.topicText.text()
+        self.setup_subscription(topic)
 
-    def setup_subscription(self):
+    def setup_subscription(self, topic):
         """Create the ROS 2 subscription."""
         self.subscription = self._context.node.create_subscription(
-            String, self.topic, self.plan_graph_callback, 10
+            String, topic, self.plan_graph_callback, 10
         )
         self._widget.topicText.setText(self.subscription.topic_name)
 
