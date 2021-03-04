@@ -59,6 +59,8 @@ jobs:
 
       - name: Statick
         run: |
-          cd ${{ steps.build-and-test.outputs.ros-workspace-directory-name }}
+          cd ros_ws
+          source /opt/ros/foxy/setup.sh
+          source install/setup.bash
           mkdir statick-output
-          statick ./src/rqt_dotgraph --output-directory /tmp/statick-output --user-paths ./src/rqt_dotgraph/statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml
+          statick ./src --output-directory statick-output --user-paths ./src/rqt_dotgraph/statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml
