@@ -14,6 +14,7 @@
 # limitations under the License.
 
 from ament_flake8.main import main_with_errors
+
 import pytest
 
 
@@ -21,7 +22,7 @@ import pytest
 @pytest.mark.linter
 def test_flake8():
     """Run flake8 on the package."""
-    return_code, errors = main_with_errors(argv=[])
-    assert return_code == 0, "Found %d code style errors / warnings:\n" % len(
+    return_code, errors = main_with_errors(argv=["--config", ".flake8"])
+    assert return_code == 0, "Found %d code style errors / warnings:\n" % len(  # nosec
         errors
     ) + "\n".join(errors)

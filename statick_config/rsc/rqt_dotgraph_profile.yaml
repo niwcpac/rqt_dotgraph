@@ -1,0 +1,3 @@
+default: rqt_dotgraph
+
+packages:

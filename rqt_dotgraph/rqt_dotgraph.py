@@ -6,10 +6,10 @@ their official duties. Pursuant to title 17 Section 105 of the United States Cod
 software is not subject to copyright protection and is in the public domain. The
 Government assumes no responsibility whatsoever for its use by other parties, and the
 software is provided "AS IS" without warranty or guarantee of any kind, express or
-implied, including, but not limited to, the warranties of merchantability, fitness for
-a particular purpose, and noninfringement. In no event shall the Government be liable
-for any claim, damages or other liability, whether in an action of contract, tort or
-other dealings in the software. The software is not designed for use in (i) the design,
+implied, including, but not limited to, the warranties of merchantability, fitness for a
+particular purpose, and noninfringement. In no event shall the Government be liable for
+any claim, damages or other liability, whether in an action of contract, tort or other
+dealings in the software. The software is not designed for use in (i) the design,
 construction, operation or maintenance of any nuclear facility; (ii) navigating or
 operating aircraft or any manned vehicle; or (iii) any life-saving, life-support or
 life-critical medical equipment. The Government has no obligation hereunder to provide
@@ -27,20 +27,21 @@ import sys
 
 from ament_index_python import get_resource
 
-from std_msgs.msg import String
-
 # pylint doesn't support how python_qt_bindings modules are added:
 # https://github.com/PyCQA/pylint/issues/3398
 # pylint: disable=no-name-in-module,import-error
 from python_qt_binding import loadUi
 from python_qt_binding.QtGui import QImageWriter
-from python_qt_binding.QtWidgets import QFileDialog, QWidget
 from python_qt_binding.QtSvg import QSvgGenerator
+from python_qt_binding.QtWidgets import QFileDialog, QWidget
 
 # pylint: enable=no-name-in-module,import-error
 
 from rqt_gui.main import Main
+
 from rqt_gui_py.plugin import Plugin
+
+from std_msgs.msg import String
 
 from rqt_dotgraph.xdot_qt import DotWidget
 
@@ -49,12 +50,12 @@ class RqtDotGraphViewer(Plugin):
     """rqt GUI plugin to visualize dot graphs."""
 
     def __init__(self, context):
-        super(RqtDotGraphViewer, self).__init__(context)
+        """Initialize the plugin."""
+        super().__init__(context)
         self._context = context
         self.subscription = None
         self.graph = None
         self.filename = None
-        self.topic = "dot_graph"
 
         # only declare the parameter if running standalone or it's the first instance
         if self._context.serial_number() <= 1:
@@ -92,19 +93,19 @@ class RqtDotGraphViewer(Plugin):
         if self._context.serial_number() < 1:
             self._widget.window().setWindowTitle(self.title)
 
-        self.setup_subscription()
+        self.setup_subscription("dot_graph")
 
     def update_subscriber(self):
         """Update ROS 2 subscription with topic from text box."""
         if self.subscription is not None:
             self.subscription.destroy()
-        self.topic = self._widget.topicText.text()
-        self.setup_subscription()
+        topic = self._widget.topicText.text()
+        self.setup_subscription(topic)
 
-    def setup_subscription(self):
+    def setup_subscription(self, topic):
         """Create the ROS 2 subscription."""
         self.subscription = self._context.node.create_subscription(
-            String, self.topic, self.plan_graph_callback, 10
+            String, topic, self.plan_graph_callback, 10
         )
         self._widget.topicText.setText(self.subscription.topic_name)
 

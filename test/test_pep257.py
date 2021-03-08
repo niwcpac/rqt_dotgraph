@@ -14,6 +14,7 @@
 # limitations under the License.
 
 from ament_pep257.main import main
+
 import pytest
 
 
@@ -22,4 +23,4 @@ import pytest
 def test_pep257():
     """Run pep257 on the package."""
     return_code = main(argv=[".", "test"])
-    assert return_code == 0, "Found code style errors / warnings"
+    assert return_code == 0, "Found code style errors / warnings"  # nosec
