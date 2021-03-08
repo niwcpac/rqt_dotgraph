@@ -1,7 +1,3 @@
 default: rqt_dotgraph
 
 packages:
-
-# You can do individual package level overrides like:
-# packages:
-#   my_package: objective

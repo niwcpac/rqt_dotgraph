@@ -1,11 +1,12 @@
 [flake8]
 extend-ignore =
-  # E203 is also not black compliant: https://github.com/psf/black/blob/master/docs/the_black_code_style.md#slices
+  # E203 is not black compliant: https://github.com/psf/black/blob/master/docs/the_black_code_style.md#slices
   E203,
   # Q000 quote style conflicts with black: https://github.com/psf/black/blob/master/docs/the_black_code_style.md#strings
   Q000,
   # W503 is not pep-8 compliant, conflicts with black: https://github.com/psf/black/issues/52
   W503
 max-line-length = 88
+# This is a third-party file where we do not want to modify the formatting. This helps stay closer to upstream for future changes.
 exclude = rqt_dotgraph/xdot_qt.py
 application_import_names = rqt_dotgraph

@@ -17,7 +17,7 @@ jobs:
       - name: Install Python dependencies
         run: |
           # This is not the preferred way to install python tools but seems to be required here.
-          # "python3 -m pip" would be preferred.
+          # "python3 -m pip install" would be preferred.
           sudo pip3 install --upgrade pip
           sudo pip3 install --upgrade setuptools
           sudo pip3 install --upgrade wheel
@@ -33,13 +33,13 @@ jobs:
           sudo pip3 install --upgrade pylint
           sudo pip3 install --upgrade yamllint
 
-      # Have to install newer version from non-apt source due to SSL library compatibility issues.
       - name: Install Apt dependencies (Linux)
         run: |
           sudo apt install cccc
           sudo apt install libxml2
           sudo apt install libxml2-utils
           sudo apt install curl
+          # Have to install newer version of node from non-apt source due to SSL library compatibility issues.
           curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
           sudo bash nodesource_setup.sh
           sudo apt install nodejs
@@ -48,7 +48,7 @@ jobs:
           sudo npm install -g markdownlint-cli
           rm nodesource_setup.sh
 
-      - name: build and test
+      - name: Build and test
         id: built-and-test
         uses: ros-tooling/action-ros-ci@0.1.0
         with:
@@ -61,12 +61,8 @@ jobs:
       - name: Codecov
         uses: codecov/codecov-action@v1.1.0
         with:
-          # file: ros_ws/lcov/total_coverage.info
-          # file: ${{ steps.build-and-test.outputs.ros-workspace-directory-name }}/lcov/total_coverage.info
           flags: unittests
           name: codecov-umbrella
-          # yml: ./codecov.yml
-          # fail_ci_if_error: false
 
       - name: Setup copy of repo
         uses: actions/checkout@v2
@@ -74,5 +70,4 @@ jobs:
       - name: Statick
         run: |
           source /opt/ros/foxy/setup.sh
-          mkdir statick-output
-          statick . --check --output-directory statick-output --user-paths ./statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml
+          statick . --check --output-directory statick-output --user-paths ./statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml --log info
