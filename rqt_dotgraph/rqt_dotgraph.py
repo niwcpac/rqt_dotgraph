@@ -116,7 +116,7 @@ class RqtDotGraphViewer(Plugin):
 
     def refresh_graph(self):
         """Update the dot graph displayed by the plugin."""
-        self._context.node.get_logger().info(self.graph)
+        self._context.node.get_logger().debug(self.graph)
 
         # Capture stdout and stderr and output as an info level log
         # because ROS2 logging levels when launching are broken.
@@ -125,8 +125,8 @@ class RqtDotGraphViewer(Plugin):
         with contextlib.redirect_stdout(new_out):
             with contextlib.redirect_stderr(new_err):
                 self._widget.xdot_widget.set_dotcode(self.graph)
-        self._context.node.get_logger().info(new_out.getvalue())
-        self._context.node.get_logger().info(new_err.getvalue())
+        self._context.node.get_logger().debug(new_out.getvalue())
+        self._context.node.get_logger().debug(new_err.getvalue())
 
         self._widget.xdot_widget.zoom_to_fit()
         self._widget.xdot_widget.update()
