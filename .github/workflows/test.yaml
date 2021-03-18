@@ -14,25 +14,6 @@ jobs:
         with:
           required-ros-distributions: foxy
 
-      - name: Build and test
-        id: built-and-test
-        uses: ros-tooling/action-ros-ci@0.1.0
-        with:
-          package-name: rqt_dotgraph
-          target-ros2-distro: foxy
-          vcs-repo-file-url: ""
-          colcon-mixin-name: coverage-pytest
-          colcon-mixin-repository: https://raw.githubusercontent.com/colcon/colcon-mixin-repository/master/index.yaml
-
-      - name: Codecov
-        uses: codecov/codecov-action@v1.1.0
-        with:
-          flags: unittests
-          name: codecov-umbrella
-
-      - name: Setup copy of repo
-        uses: actions/checkout@v2
-
       - name: Install Python dependencies
         run: |
           # This is not the preferred way to install python tools but seems to be required here.
@@ -66,6 +47,25 @@ jobs:
           sudo n stable
           sudo npm install -g markdownlint-cli
           rm nodesource_setup.sh
+
+      - name: Build and test
+        id: built-and-test
+        uses: ros-tooling/action-ros-ci@0.1.0
+        with:
+          package-name: rqt_dotgraph
+          target-ros2-distro: foxy
+          vcs-repo-file-url: ""
+          colcon-mixin-name: coverage-pytest
+          colcon-mixin-repository: https://raw.githubusercontent.com/colcon/colcon-mixin-repository/master/index.yaml
+
+      - name: Codecov
+        uses: codecov/codecov-action@v1.1.0
+        with:
+          flags: unittests
+          name: codecov-umbrella
+
+      - name: Setup copy of repo
+        uses: actions/checkout@v2
 
       - name: Statick
         run: |
