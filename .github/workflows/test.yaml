@@ -27,7 +27,9 @@ jobs:
           sudo pip3 install --upgrade black
           sudo pip3 install --upgrade docformatter
           sudo pip3 install --upgrade lizard
-          sudo pip3 install --upgrade pycodestyle
+          # pycodestyle 2.7.0 added an "--indent-size" option and seems to have broken flake8
+          # https://bugs.archlinux.org/task/70021
+          sudo pip3 install --upgrade "pycodestyle<2.7.0"
           sudo pip3 install --upgrade pydocstyle
           sudo pip3 install --upgrade pyflakes
           sudo pip3 install --upgrade pylint
