@@ -10,9 +10,3 @@ max-line-length = 88
 # This is a third-party file where we do not want to modify the formatting. This helps stay closer to upstream for future changes.
 exclude = rqt_dotgraph/xdot_qt.py
 application_import_names = rqt_dotgraph
-
-[pycodestyle]
-ignore = E111,E114
-
-[pep8]
-indent-size=4
