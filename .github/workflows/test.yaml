@@ -67,7 +67,7 @@ jobs:
                 "mixin": ["coverage-pytest"]
               }
             }
-          colcon-mixin-repository: https://github.com/colcon/colcon-mixin-repository/blob/1ddb69bedfd1f04c2f000e95452f7c24a4d6176b/index.yaml
+          colcon-mixin-repository: https://raw.githubusercontent.com/colcon/colcon-mixin-repository/1ddb69bedfd1f04c2f000e95452f7c24a4d6176b/index.yaml
 
       - name: Codecov
         uses: codecov/codecov-action@v1.1.0
