@@ -10,7 +10,7 @@ jobs:
         os: [ubuntu-20.04]
     steps:
       - name: Setup ROS 2
-        uses: ros-tooling/setup-ros@0.1.1
+        uses: ros-tooling/setup-ros@0.1.4
         with:
           required-ros-distributions: foxy
 
@@ -53,7 +53,7 @@ jobs:
 
       - name: Build and test
         id: built-and-test
-        uses: ros-tooling/action-ros-ci@0.1.0
+        uses: ros-tooling/action-ros-ci@v0.2
         with:
           package-name: rqt_dotgraph
           target-ros2-distro: foxy
