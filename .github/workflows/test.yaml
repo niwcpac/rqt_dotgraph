@@ -10,7 +10,7 @@ jobs:
         os: [ubuntu-20.04]
     steps:
       - name: Setup ROS 2
-        uses: ros-tooling/setup-ros@0.1.1
+        uses: ros-tooling/setup-ros@0.1.4
         with:
           required-ros-distributions: foxy
 
@@ -27,7 +27,10 @@ jobs:
           sudo pip3 install --upgrade black
           sudo pip3 install --upgrade docformatter
           sudo pip3 install --upgrade lizard
-          sudo pip3 install --upgrade pycodestyle
+          # pycodestyle 2.7.0 added an "--indent-size" option and seems to have broken flake8
+          # this is fixed in flake8 3.9.0 but setup-ros is forcing flake8<3.8
+          # https://bugs.archlinux.org/task/70021
+          sudo pip3 install --upgrade "pycodestyle<2.7.0"
           sudo pip3 install --upgrade pydocstyle
           sudo pip3 install --upgrade pyflakes
           sudo pip3 install --upgrade pylint
@@ -50,13 +53,21 @@ jobs:
 
       - name: Build and test
         id: built-and-test
-        uses: ros-tooling/action-ros-ci@0.1.0
+        uses: ros-tooling/action-ros-ci@v0.2
         with:
           package-name: rqt_dotgraph
           target-ros2-distro: foxy
           vcs-repo-file-url: ""
-          colcon-mixin-name: coverage-pytest
-          colcon-mixin-repository: https://raw.githubusercontent.com/colcon/colcon-mixin-repository/master/index.yaml
+          colcon-defaults: |
+            {
+              "build": {
+                "mixin": ["coverage-pytest"]
+              },
+              "test": {
+                "mixin": ["coverage-pytest"]
+              }
+            }
+          colcon-mixin-repository: https://raw.githubusercontent.com/colcon/colcon-mixin-repository/1ddb69bedfd1f04c2f000e95452f7c24a4d6176b/index.yaml
 
       - name: Codecov
         uses: codecov/codecov-action@v1.1.0
