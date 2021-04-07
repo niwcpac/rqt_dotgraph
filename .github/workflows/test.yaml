@@ -62,7 +62,7 @@ jobs:
             {
               "build": {
                 "mixin": ["coverage-pytest"]
-              }
+              },
               "test": {
                 "mixin": ["coverage-pytest"]
               }
