@@ -98,7 +98,9 @@ class RqtDotGraphViewer(Plugin):
     def update_subscriber(self):
         """Update ROS 2 subscription with topic from text box."""
         if self.subscription is not None:
-            self.subscription.destroy()
+            self._context.node.destroy_subscription(self.subscription)
+            self.subscription = None
+            self.graph = None
         topic = self._widget.topicText.text()
         self.setup_subscription(topic)
 
@@ -111,11 +113,14 @@ class RqtDotGraphViewer(Plugin):
 
     def plan_graph_callback(self, msg):
         """Receive the dot graph string."""
+        zoom_to_fit = self.graph is None
         self.graph = msg.data
-        self.refresh_graph()
+        self.refresh_graph(zoom_to_fit)
 
-    def refresh_graph(self):
+    def refresh_graph(self, zoom_to_fit):
         """Update the dot graph displayed by the plugin."""
+        if self.graph is None:
+            return
         self._context.node.get_logger().debug(self.graph)
 
         # Capture stdout and stderr and output as an info level log
@@ -128,7 +133,8 @@ class RqtDotGraphViewer(Plugin):
         self._context.node.get_logger().debug(new_out.getvalue())
         self._context.node.get_logger().debug(new_err.getvalue())
 
-        self._widget.xdot_widget.zoom_to_fit()
+        if zoom_to_fit:
+            self._widget.xdot_widget.zoom_to_fit()
         self._widget.xdot_widget.update()
 
     def load_graph(self):
