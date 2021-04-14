@@ -146,7 +146,7 @@ class RqtDotGraphViewer(Plugin):
             with open(ret[0], "r") as dotfile:
                 self.filename = ret[0]
                 self.graph = dotfile.read()
-                self.refresh_graph()
+                self.refresh_graph(True)
                 if self.subscription is not None:
                     self.subscription.destroy()
                     self.subscription = None
