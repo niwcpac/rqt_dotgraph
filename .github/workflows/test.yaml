@@ -10,7 +10,7 @@ jobs:
         os: [ubuntu-20.04]
     steps:
       - name: Setup ROS 2
-        uses: ros-tooling/setup-ros@0.1.4
+        uses: ros-tooling/setup-ros@0.2.1
         with:
           required-ros-distributions: foxy
 
