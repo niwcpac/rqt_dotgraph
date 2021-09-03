@@ -143,7 +143,7 @@ class RqtDotGraphViewer(Plugin):
             self._widget, "Load graph", "untitled.dot", "Dot files (*.dot *.xdot)"
         )
         if ret[0]:
-            with open(ret[0], "r") as dotfile:
+            with open(ret[0], "r", encoding="utf8") as dotfile:
                 self.filename = ret[0]
                 self.graph = dotfile.read()
                 self.refresh_graph(True)
