@@ -23,6 +23,6 @@ import pytest
 def test_flake8():
     """Run flake8 on the package."""
     return_code, errors = main_with_errors(argv=["--config", ".flake8"])
-    assert (
+    assert (  # nosec
         return_code == 0
     ), f"Found {len(errors)} code style errors / warnings:\n\n".join(errors)
