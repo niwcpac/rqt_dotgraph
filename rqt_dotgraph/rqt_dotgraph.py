@@ -64,7 +64,7 @@ class RqtDotGraphViewer(Plugin):
 
         supported_formats = QImageWriter.supportedImageFormats()
         self.image_filter = (
-            ";;".join(["*.{}".format(fo.data().decode()) for fo in supported_formats])
+            ";;".join([f"*.{fo.data().decode()}" for fo in supported_formats])
             + ";;*.svg"
         )
 
@@ -84,7 +84,7 @@ class RqtDotGraphViewer(Plugin):
 
         title = self.title
         if self._context.serial_number() > 1:
-            title += " (%d)" % self._context.serial_number()
+            title += f" ({self._context.serial_number()})"
 
         self._context.add_widget(self._widget)
 
