@@ -24,6 +24,24 @@ The rest of this package is released under the [CC0][cc0] license.
 
 * Window title.
 
+## Troubleshooting
+
+### Plugin File Not Found
+
+`rqt` plugins can have issues running.
+This has occurred most often after updating graphics drivers.
+A typical error message is the following.
+
+```shell
+RosPluginProvider._parse_plugin_xml() plugin file "/home/user/ws/install/rqt_dotgraph/share/rqt_dotgraph/plugin.xml" in package "rqt_dotgraph" not found
+```
+
+The fix is to run the following command then continue with previous commands where the error occurred.
+
+```shell
+ros2 run rqt_dotgraph rqt_dotgraph --force-discover
+```
+
 [dot]: https://en.wikipedia.org/wiki/DOT_(graph_description_language)
 [xdot]: https://github.com/jrfonseca/xdot.py
 [rosplan]: https://github.com/KCL-Planning/ROSPlan/blob/master/rosplan_rqt/src/rosplan_rqt/xdot_qt.py
