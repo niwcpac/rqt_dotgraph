@@ -66,6 +66,6 @@ jobs:
           user_paths: statick_config
           profile: rqt_dotgraph_profile.yaml
           config: rqt_dotgraph_config.yaml
-          level: info
+          log_level: info
           timings: true
 
