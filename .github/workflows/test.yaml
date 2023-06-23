@@ -68,4 +68,3 @@ jobs:
           config: rqt_dotgraph_config.yaml
           log_level: info
           timings: true
-
