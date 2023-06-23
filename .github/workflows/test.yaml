@@ -10,18 +10,12 @@ jobs:
       matrix:
         ros_distribution:
           - humble
-          - iron
           - rolling
 
         include:
           # Humble Hawksbill (May 2022 - May 2027)
           - docker_image: osrf/ros:humble-desktop-full
             ros_distribution: humble
-            ros_version: 2
-
-          # Iron Irwini (May 2023 - November 2024)
-          - docker_image: osrf/ros:iron-desktop-full
-            ros_distribution: iron
             ros_version: 2
 
           # Rolling Ridley (No End-Of-Life)
