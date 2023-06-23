@@ -1,4 +1,5 @@
-"""Rqt GUI plugin to visualize dot graphs.
+"""
+Rqt GUI plugin to visualize dot graphs.
 
 This software was developed by employees of the Federal Government in the course of
 their official duties. Pursuant to title 17 Section 105 of the United States Code, this
