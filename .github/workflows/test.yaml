@@ -59,12 +59,45 @@ jobs:
       - name: Setup copy of repo
         uses: actions/checkout@v3
 
+      - name: Install Python dependencies
+        run: |
+          # This is not the preferred way to install python tools but seems to be required here.
+          # "python3 -m pip install" would be preferred.
+          sudo pip3 install --upgrade pip
+          sudo pip3 install --upgrade setuptools
+          sudo pip3 install --upgrade wheel
+          sudo pip3 install --upgrade coverage
+          sudo pip3 install --upgrade statick
+          sudo pip3 install --upgrade statick-md
+          sudo pip3 install --upgrade black
+          sudo pip3 install --upgrade docformatter
+          sudo pip3 install --upgrade lizard
+          # pycodestyle 2.7.0 added an "--indent-size" option and seems to have broken flake8
+          # this is fixed in flake8 3.9.0 but setup-ros is forcing flake8<3.8
+          # https://bugs.archlinux.org/task/70021
+          sudo pip3 install --upgrade "pycodestyle<2.7.0"
+          sudo pip3 install --upgrade pydocstyle
+          sudo pip3 install --upgrade pyflakes
+          sudo pip3 install --upgrade pylint
+          sudo pip3 install --upgrade yamllint
+
+      - name: Install Apt dependencies (Linux)
+        run: |
+          sudo apt install cccc
+          sudo apt install libxml2
+          sudo apt install libxml2-utils
+          sudo apt install curl
+          # Have to install newer version of node from non-apt source due to SSL library compatibility issues.
+          curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh
+          sudo bash nodesource_setup.sh
+          sudo apt install nodejs
+          sudo npm install -g n
+          sudo n stable
+          sudo npm install -g markdownlint-cli
+          rm nodesource_setup.sh
+
       - name: Statick
-        uses: sscpac/statick-action@v0.9.2
-        with:
-          check: true
-          user_paths: statick_config
-          profile: rqt_dotgraph_profile.yaml
-          config: rqt_dotgraph_config.yaml
-          log_level: info
-          timings: true
+        run: |
+          source /opt/ros/${{ matrix.ros_distribution }}/setup.sh
+          statick . --check --output-directory statick-output --user-paths ./statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml --log info --timings
+
