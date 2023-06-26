@@ -4,15 +4,60 @@ on: [pull_request, push] # NOLINT
 
 jobs:
   build-and-test:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        os: [ubuntu-20.04]
+        ros_distribution:
+          - humble
+          - rolling
+
+        include:
+          # Humble Hawksbill (May 2022 - May 2027)
+          - docker_image: osrf/ros:humble-desktop-full
+            ros_distribution: humble
+            ros_version: 2
+
+          # Rolling Ridley (No End-Of-Life)
+          - docker_image: osrf/ros:rolling-desktop-full
+            ros_distribution: rolling
+            ros_version: 2
+
+    container:
+      image: ${{ matrix.docker_image }}
+
     steps:
       - name: Setup ROS 2
-        uses: ros-tooling/setup-ros@0.2.1
+        uses: ros-tooling/setup-ros@v0.6
         with:
-          required-ros-distributions: foxy
+          required-ros-distributions: ${{ matrix.ros_distribution }}
+
+      - name: Build and test
+        if: ${{ matrix.ros_version == 2 }}
+        id: built-and-test
+        uses: ros-tooling/action-ros-ci@v0.2
+        with:
+          package-name: rqt_dotgraph
+          target-ros2-distro: ${{ matrix.ros_distribution }}
+          vcs-repo-file-url: ""
+          colcon-defaults: |
+            {
+              "build": {
+                "mixin": ["coverage-pytest"]
+              },
+              "test": {
+                "mixin": ["coverage-pytest"]
+              }
+            }
+          colcon-mixin-repository: https://raw.githubusercontent.com/colcon/colcon-mixin-repository/1ddb69bedfd1f04c2f000e95452f7c24a4d6176b/index.yaml
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          fail_ci_if_error: false
+
+      - name: Setup copy of repo
+        uses: actions/checkout@v3
 
       - name: Install Python dependencies
         run: |
@@ -43,7 +88,7 @@ jobs:
           sudo apt install libxml2-utils
           sudo apt install curl
           # Have to install newer version of node from non-apt source due to SSL library compatibility issues.
-          curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
+          curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh
           sudo bash nodesource_setup.sh
           sudo apt install nodejs
           sudo npm install -g n
@@ -51,34 +96,7 @@ jobs:
           sudo npm install -g markdownlint-cli
           rm nodesource_setup.sh
 
-      - name: Build and test
-        id: built-and-test
-        uses: ros-tooling/action-ros-ci@v0.2
-        with:
-          package-name: rqt_dotgraph
-          target-ros2-distro: foxy
-          vcs-repo-file-url: ""
-          colcon-defaults: |
-            {
-              "build": {
-                "mixin": ["coverage-pytest"]
-              },
-              "test": {
-                "mixin": ["coverage-pytest"]
-              }
-            }
-          colcon-mixin-repository: https://raw.githubusercontent.com/colcon/colcon-mixin-repository/1ddb69bedfd1f04c2f000e95452f7c24a4d6176b/index.yaml
-
-      - name: Codecov
-        uses: codecov/codecov-action@v1.1.0
-        with:
-          flags: unittests
-          name: codecov-umbrella
-
-      - name: Setup copy of repo
-        uses: actions/checkout@v2
-
       - name: Statick
         run: |
-          source /opt/ros/foxy/setup.sh
-          statick . --check --output-directory statick-output --user-paths ./statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml --log info
+          . /opt/ros/${{ matrix.ros_distribution }}/setup.sh
+          statick . --check --output-directory statick-output --user-paths ./statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml --log info --timings
