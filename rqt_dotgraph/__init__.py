@@ -1,1 +1,1 @@
-"""rqt GUI plugin to visualize dot graphs."""
+"""Rqt GUI plugin to visualize dot graphs."""

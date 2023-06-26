@@ -1,5 +1,5 @@
 """
-rqt GUI plugin to visualize dot graphs.
+Rqt GUI plugin to visualize dot graphs.
 
 This software was developed by employees of the Federal Government in the course of
 their official duties. Pursuant to title 17 Section 105 of the United States Code, this
@@ -47,7 +47,7 @@ from rqt_dotgraph.xdot_qt import DotWidget
 
 
 class RqtDotGraphViewer(Plugin):
-    """rqt GUI plugin to visualize dot graphs."""
+    """Rqt GUI plugin to visualize dot graphs."""
 
     def __init__(self, context):
         """Initialize the plugin."""
