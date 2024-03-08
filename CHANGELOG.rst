@@ -25,11 +25,11 @@ Fixed
 Removed
 -------
 * Remove version pinning for pycodestyle in workflow. (#15)
-* Contributors: Alexander Xydes
 
 0.0.1 (2021-05-17)
 ==================
 * Initial release of a ROS2 node and an rqt plugin for visualizing dot graph files.
+* Contributors: Alexander Xydes
 
 Added
 -----
