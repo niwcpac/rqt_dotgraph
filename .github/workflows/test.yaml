@@ -1,6 +1,11 @@
 name: test
 
-on: [pull_request, push] # NOLINT
+on: # NOLINT
+  pull_request:
+  push:
+  schedule:
+    - cron: '0 10 * * MON'
+  workflow_dispatch:
 
 jobs:
   build-and-test:
