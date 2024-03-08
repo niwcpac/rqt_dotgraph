@@ -8,6 +8,8 @@
   <license>CC0</license>
 
   <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>python3-pyside2</exec_depend>
+  <exec_depend>python3-qt5-bindings</exec_depend>
   <exec_depend>python_qt_binding</exec_depend>
   <exec_depend version_gte="1.1.2">qt_dotgraph</exec_depend>
   <exec_depend>qt_gui_py_common</exec_depend>
