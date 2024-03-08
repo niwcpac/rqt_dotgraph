@@ -9,8 +9,9 @@ Changelog for package rqt_dotgraph
 Added
 -----
 * Troubleshooting:
-  * Tips for some runtime crashes due to missing dependencies. (#13)
-  * Details about fixing plugin file not found error. (#9)
+
+  - Tips for some runtime crashes due to missing dependencies. (#13)
+  - Details about fixing plugin file not found error. (#9)
 * Run actions on a schedule or `workflow_dispatch` as well as pull request and push. (#10)
 * Update actions used in workflows. (#14)
 * Update CI to use newer versions of actions and test on multiple ROS distributions. (#12)
