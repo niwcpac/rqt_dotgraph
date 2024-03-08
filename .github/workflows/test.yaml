@@ -69,10 +69,7 @@ jobs:
           sudo pip3 install --upgrade coverage
           sudo pip3 install --upgrade statick
           sudo pip3 install --upgrade statick-md
-          # pycodestyle 2.7.0 added an "--indent-size" option and seems to have broken flake8
-          # This is fixed in flake8 3.9.0 but setup-ros is forcing flake8<3.8.
-          # https://bugs.archlinux.org/task/70021
-          sudo pip3 install --upgrade "pycodestyle<2.7.0"
+          sudo pip3 install --upgrade pycodestyle
           sudo pip3 install --upgrade pyflakes
 
       - name: Install Apt dependencies (Linux)
