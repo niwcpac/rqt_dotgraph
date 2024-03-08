@@ -42,6 +42,38 @@ The fix is to run the following command then continue with previous commands whe
 ros2 run rqt_dotgraph rqt_dotgraph --force-discover
 ```
 
+### Import Errors when Running
+
+When running the node with
+
+```shell
+ros2 run rqt_dotgraph rqt_dotgraph
+```
+
+and this error occurs
+
+```shell
+ImportError: cannot import name 'QVariant' from 'PySide2.QtCore' (/home/thomas/src/rqt_dotgraph/venv/lib/python3.10/site-packages/PySide2/QtCore.abi3.so)
+```
+
+Fix it with
+
+```shell
+pip install PyQt5
+```
+
+If this error occurs
+
+```shell
+ModuleNotFoundError: No module named 'PySide2'
+```
+
+Fix it with
+
+```shell
+pip install PySide2
+```
+
 [dot]: https://en.wikipedia.org/wiki/DOT_(graph_description_language)
 [xdot]: https://github.com/jrfonseca/xdot.py
 [rosplan]: https://github.com/KCL-Planning/ROSPlan/blob/master/rosplan_rqt/src/rosplan_rqt/xdot_qt.py
