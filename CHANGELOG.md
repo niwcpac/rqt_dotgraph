@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Run actions on a schedule or `workflow_dispatch` as well as pull request and push. (#10)
 - Update actions used in workflows. (#14)
 - Update CI to use newer versions of actions and test on multiple ROS distributions. (#12)
+- Update list of maintainers. (#18)
 
 ### Fixed
 
