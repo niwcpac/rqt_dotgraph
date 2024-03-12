@@ -7,7 +7,8 @@
   <maintainer email="alexander.l.xydes.civ@us.navy.mil">Alexander Xydes</maintainer>
   <maintainer email="thomas.a.denewiler.civ@us.navy.mil">Thomas Denewiler</maintainer>
   <maintainer email="greg.t.kogut.civ@us.navy.mil">Greg Kogut</maintainer>
-  <license>CC0</license>
+  <license>LGPLv3</license> <!-- For rqt_dotgraph/xdot_qt.py only. -->
+  <license>CC0</license> <!-- For all other files. -->
 
   <exec_depend>ament_index_python</exec_depend>
   <exec_depend>python3-pyside2</exec_depend>
