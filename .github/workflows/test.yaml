@@ -99,5 +99,5 @@ jobs:
 
       - name: Statick
         run: |
-          . /opt/ros/${{ matrix.ros_distribution }}/setup.bash
+          . /opt/ros/${{ matrix.ros_distribution }}/setup.sh
           statick . --check --output-directory statick-output --user-paths ./statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml --log info --timings
