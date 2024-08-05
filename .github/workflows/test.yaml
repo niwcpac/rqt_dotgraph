@@ -14,18 +14,25 @@ jobs:
     strategy:
       matrix:
         ros_distribution:
+          - iron
           - humble
+          - jazzy
           - rolling
 
         include:
+          # Iron Irwini (May 2023 - November 2024)
+          - docker_image: osrf/ros:iron-desktop-full
+            ros_distribution: iron
+            ros_version: 2
+
           # Humble Hawksbill (May 2022 - May 2027)
           - docker_image: osrf/ros:humble-desktop-full
             ros_distribution: humble
             ros_version: 2
 
-          # Iron Irwini (May 2023 - November 2024)
-          - docker_image: osrf/ros:iron-desktop-full
-            ros_distribution: iron
+          # Jazzy Jalisco (May 2024 - May 2029)
+          - docker_image: osrf/ros:jazzy-desktop-full
+            ros_distribution: jazzy
             ros_version: 2
 
           # Rolling Ridley (No End-Of-Life)
