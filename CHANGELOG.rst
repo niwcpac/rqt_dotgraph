@@ -22,6 +22,11 @@ Fixed
 * Add PySide2 and PyQt5 dependencies to package.xml. (#16)
 * Switch from hyphen to underscore in setup.cfg to avoid deprecated Python variables. (#11)
 * Explicitly specifying file encoding when opening a file with Python. Fixes pylint warning (Statick). (#6)
+* Continuous integration fixes.
+
+  - Use setup-python and setup-node actions.
+  - Remove sudo from pip install commands.
+  - Add Jazzy to the ROS distribution matrix.
 
 Removed
 -------
