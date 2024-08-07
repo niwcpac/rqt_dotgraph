@@ -14,18 +14,25 @@ jobs:
     strategy:
       matrix:
         ros_distribution:
+          - iron
           - humble
+          - jazzy
           - rolling
 
         include:
+          # Iron Irwini (May 2023 - November 2024)
+          - docker_image: osrf/ros:iron-desktop-full
+            ros_distribution: iron
+            ros_version: 2
+
           # Humble Hawksbill (May 2022 - May 2027)
           - docker_image: osrf/ros:humble-desktop-full
             ros_distribution: humble
             ros_version: 2
 
-          # Iron Irwini (May 2023 - November 2024)
-          - docker_image: osrf/ros:iron-desktop-full
-            ros_distribution: iron
+          # Jazzy Jalisco (May 2024 - May 2029)
+          - docker_image: osrf/ros:jazzy-desktop-full
+            ros_distribution: jazzy
             ros_version: 2
 
           # Rolling Ridley (No End-Of-Life)
@@ -37,6 +44,16 @@ jobs:
       image: ${{ matrix.docker_image }}
 
     steps:
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
       - name: Setup ROS 2
         uses: ros-tooling/setup-ros@v0.7
         with:
@@ -71,31 +88,21 @@ jobs:
 
       - name: Install Python dependencies
         run: |
-          # This is not the preferred way to install Python tools but seems to be required here.
-          # "python3 -m pip install" would be preferred.
-          sudo pip3 install --upgrade pip
-          sudo pip3 install --upgrade setuptools
-          sudo pip3 install --upgrade wheel
-          sudo pip3 install --upgrade coverage
-          sudo pip3 install --upgrade statick
-          sudo pip3 install --upgrade statick-md
-          sudo pip3 install --upgrade pycodestyle
-          sudo pip3 install --upgrade pyflakes
+          python -m pip install --upgrade pip
+          python -m pip install --upgrade setuptools
+          python -m pip install --upgrade wheel
+          python -m pip install --upgrade coverage
+          python -m pip install --upgrade statick
+          python -m pip install --upgrade statick-md
+          python -m pip install --upgrade pycodestyle
+          python -m pip install --upgrade pyflakes
 
       - name: Install Apt dependencies (Linux)
         run: |
           sudo apt install cccc
           sudo apt install libxml2
           sudo apt install libxml2-utils
-          sudo apt install curl
-          # Have to install newer version of node from non-apt source due to SSL library compatibility issues.
-          curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh
-          sudo bash nodesource_setup.sh
-          sudo apt install nodejs
-          sudo npm install -g n
-          sudo n stable
-          sudo npm install -g markdownlint-cli
-          rm nodesource_setup.sh
+          npm install -g markdownlint-cli
 
       - name: Statick
         run: |
