@@ -2,6 +2,16 @@
 Changelog for package rqt_dotgraph
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+===========
+* Contributors
+
+Fixed
+-----
+* Use a Python virtual environment when installing Python dependencies with pip.
+
+  - Fixes issue with GitHub Actions running on rolling, based on Ubuntu 24.04 with Python 3.12.
+
 0.0.3 (2024-10-02)
 ==================
 * Contributors: Alexander Xydes, Thomas Denewiler
