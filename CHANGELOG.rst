@@ -4,7 +4,7 @@ Changelog for package rqt_dotgraph
 
 Forthcoming
 ===========
-* Contributors
+* Contributors: Alexander Xydes, Thomas Denewiler
 
 Fixed
 -----
