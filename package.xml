@@ -2,7 +2,7 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>rqt_dotgraph</name>
-  <version>0.0.3</version>
+  <version>0.0.4</version>
   <description>rqt GUI plugin to visualize dot graphs.</description>
   <maintainer email="alexander.l.xydes.civ@us.navy.mil">Alexander Xydes</maintainer>
   <maintainer email="thomas.a.denewiler.civ@us.navy.mil">Thomas Denewiler</maintainer>
