@@ -89,8 +89,8 @@ jobs:
 
       - name: Install Python dependencies
         run: |
-          python -m venv .venv
-          . .venv/bin/activate
+          python -m venv /opt/.venv
+          . /opt/.venv/bin/activate
           python -m pip install --upgrade pip
           python -m pip install --upgrade setuptools
           python -m pip install --upgrade wheel
@@ -109,6 +109,6 @@ jobs:
 
       - name: Statick
         run: |
-          . .venv/bin/activate
+          . /opt/.venv/bin/activate
           . /opt/ros/${{ matrix.ros_distribution }}/setup.sh
           statick . --check --output-directory statick-output --user-paths ./statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml --log info --timings
