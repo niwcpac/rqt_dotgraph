@@ -9,7 +9,7 @@ on: # NOLINT
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     strategy:
       matrix:
@@ -82,12 +82,15 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           fail_ci_if_error: false
+          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Setup copy of repo
         uses: actions/checkout@v4
 
       - name: Install Python dependencies
         run: |
+          python -m venv /opt/.venv
+          . /opt/.venv/bin/activate
           python -m pip install --upgrade pip
           python -m pip install --upgrade setuptools
           python -m pip install --upgrade wheel
@@ -106,5 +109,6 @@ jobs:
 
       - name: Statick
         run: |
+          . /opt/.venv/bin/activate
           . /opt/ros/${{ matrix.ros_distribution }}/setup.sh
           statick . --check --output-directory statick-output --user-paths ./statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml --log info --timings
