@@ -9,7 +9,7 @@ on: # NOLINT
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     strategy:
       matrix:
@@ -45,9 +45,9 @@ jobs:
 
     steps:
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
-          python-version: "3.12"
+          python-version: "3.10"
 
       - name: Setup Node
         uses: actions/setup-node@v4
