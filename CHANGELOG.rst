@@ -2,8 +2,8 @@
 Changelog for package rqt_dotgraph
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
-===========
+0.0.3 (2024-10-02)
+==================
 * Contributors: Alexander Xydes, Thomas Denewiler
 
 Added
