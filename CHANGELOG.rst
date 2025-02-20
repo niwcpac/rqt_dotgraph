@@ -2,6 +2,20 @@
 Changelog for package rqt_dotgraph
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Upcoming (Unreleased)
+==================
+* Contributors: Alexander Xydes, Thomas Denewiler
+
+Updated
+-------
+* Use main Statick package only. All plugins are now included in the main package.
+
+Fixed
+-----
+* Use automatic yes to apt install prompts.
+
+  - Fixes issue with GitHub Actions timing out when installing dependencies via apt.
+
 0.0.4 (2024-10-02)
 ==================
 * Contributors: Alexander Xydes, Thomas Denewiler
