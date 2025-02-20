@@ -96,19 +96,18 @@ jobs:
           python -m pip install --upgrade wheel
           python -m pip install --upgrade coverage
           python -m pip install --upgrade statick
-          python -m pip install --upgrade statick-md
           python -m pip install --upgrade pycodestyle
           python -m pip install --upgrade pyflakes
 
       - name: Install Apt dependencies (Linux)
         run: |
-          sudo apt install cccc
-          sudo apt install libxml2
-          sudo apt install libxml2-utils
+          sudo apt install -y cccc
+          sudo apt install -y libxml2
+          sudo apt install -y libxml2-utils
           npm install -g markdownlint-cli
 
       - name: Statick
         run: |
           . /opt/.venv/bin/activate
           . /opt/ros/${{ matrix.ros_distribution }}/setup.sh
-          statick . --check --output-directory statick-output --user-paths ./statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml --log info --timings
+          statick . --check -o statick-output -u ./statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml --log info --timings
