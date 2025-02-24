@@ -96,8 +96,6 @@ jobs:
           python -m pip install --upgrade wheel
           python -m pip install --upgrade coverage
           python -m pip install --upgrade statick
-          python -m pip install --upgrade pycodestyle
-          python -m pip install --upgrade pyflakes
 
       - name: Install Apt dependencies (Linux)
         run: |
@@ -110,4 +108,4 @@ jobs:
         run: |
           . /opt/.venv/bin/activate
           . /opt/ros/${{ matrix.ros_distribution }}/setup.sh
-          statick . --check -o statick-output -u ./statick_config --profile rqt_dotgraph_profile.yaml --config rqt_dotgraph_config.yaml --log info --timings
+          statick . --check -o statick-output -u ./statick_config --level rqt_dotgraph --log info --timings

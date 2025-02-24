@@ -4,11 +4,12 @@ Changelog for package rqt_dotgraph
 
 Upcoming (Unreleased)
 ==================
-* Contributors: Alexander Xydes, Thomas Denewiler
+* Contributors: Thomas Denewiler
 
 Updated
 -------
 * Use main Statick package only. All plugins are now included in the main package.
+* Simplify the Statick configuration files and invocation in Actions.
 
 Fixed
 -----
