@@ -10,6 +10,7 @@ Updated
 -------
 * Use main Statick package only. All plugins are now included in the main package.
 * Simplify the Statick configuration files and invocation in Actions.
+* Switch from `tests_require` to `extras_require` with `test` entry in `setup.py`. (#26)
 
 Fixed
 -----
