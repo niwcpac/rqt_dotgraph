@@ -21,7 +21,9 @@ setup(
     description="rqt GUI plugin to visualize dot graphs.",
     license="U.S. Navy",
     extras_require={
-        "test":"pytest"
+        "test": [
+            "pytest",
+        ],
     },
     entry_points={
         "console_scripts": ["rqt_dotgraph = rqt_dotgraph.rqt_dotgraph:main"],
