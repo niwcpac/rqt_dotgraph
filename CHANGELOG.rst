@@ -18,6 +18,11 @@ Fixed
 
   - Fixes issue with GitHub Actions timing out when installing dependencies via apt.
 
+Removed
+-------
+* Removed explicit dependency on `PySide2`.
+  The `python_qt_binding` dependency that the project actually uses covers this.
+
 0.0.4 (2024-10-02)
 ==================
 * Contributors: Alexander Xydes, Thomas Denewiler
