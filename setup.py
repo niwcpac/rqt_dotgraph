@@ -20,7 +20,11 @@ setup(
     maintainer_email="alexander.xydes@navy.mil",
     description="rqt GUI plugin to visualize dot graphs.",
     license="U.S. Navy",
-    tests_require=["pytest"],
+    extras_require={
+        "test": [
+            "pytest",
+        ],
+    },
     entry_points={
         "console_scripts": ["rqt_dotgraph = rqt_dotgraph.rqt_dotgraph:main"],
     },
