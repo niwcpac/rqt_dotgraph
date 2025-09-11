@@ -1,0 +1,12 @@
+---
+services:
+  devcontainer:
+    build:
+      context: ../  # Start the context at the project root
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ../:/home/tester/ws/src/rqt_dotgraph:cached  # Mount the project folder that contains .git
+      - /tmp/.X11-unix:/tmp/.X11-unix:cached"
+    networks:
+      - default
+    command: sleep infinity  # Required so the container stays open
