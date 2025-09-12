@@ -4,7 +4,10 @@ Changelog for package rqt_dotgraph
 
 Upcoming (Unreleased)
 ==================
-* Contributors: Thomas Denewiler
+
+0.0.5 (2025-09-11)
+==================
+* Contributors: Alexander Xydes, Thomas Denewiler
 
 Updated
 -------
